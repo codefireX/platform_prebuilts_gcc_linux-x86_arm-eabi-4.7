@@ -1,13 +1,13 @@
 This is annotate.info, produced by makeinfo version 4.13 from
-../../../../build/../gdb/gdb-7.3.x/gdb/doc/annotate.texinfo.
+../../../../build/../gdb/gdb-linaro-7.5-2012.09/gdb/doc/annotate.texinfo.
 
 INFO-DIR-SECTION Software development
 START-INFO-DIR-ENTRY
 * Annotate: (annotate).                 The obsolete annotation interface.
 END-INFO-DIR-ENTRY
 
-   Copyright (C) 1994, 1995, 2000, 2001, 2003, 2004, 2005, 2007, 2008,
-2009, 2010, 2011 Free Software Foundation, Inc.
+   Copyright (C) 1994-1995, 2000-2001, 2003-2005, 2007-2012 Free
+Software Foundation, Inc.
 
    Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -18,8 +18,8 @@ Free Documentation License".
 
    This file documents GDB's obsolete annotations.
 
-   Copyright (C) 1994, 1995, 2000, 2001, 2003, 2004, 2005, 2007, 2008,
-2009, 2010, 2011 Free Software Foundation, Inc.
+   Copyright (C) 1994-1995, 2000-2001, 2003-2005, 2007-2012 Free
+Software Foundation, Inc.
 
    Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -1172,21 +1172,21 @@ permit their use in free software.
 
 
 Tag Table:
-Node: Top1336
-Node: Annotations Overview2506
-Node: Limitations4305
-Node: Migrating to GDB/MI6890
-Node: Server Prefix7273
-Node: Value Annotations7919
-Node: Frame Annotations11089
-Node: Displays14988
-Node: Prompting16019
-Node: Errors17522
-Node: Breakpoint Info18412
-Node: Invalidation19637
-Node: Annotations for Running20116
-Node: Source Annotations21629
-Node: Multi-threaded Apps22575
-Node: GNU Free Documentation License23184
+Node: Top1293
+Node: Annotations Overview2463
+Node: Limitations4262
+Node: Migrating to GDB/MI6847
+Node: Server Prefix7230
+Node: Value Annotations7876
+Node: Frame Annotations11046
+Node: Displays14945
+Node: Prompting15976
+Node: Errors17479
+Node: Breakpoint Info18369
+Node: Invalidation19594
+Node: Annotations for Running20073
+Node: Source Annotations21586
+Node: Multi-threaded Apps22532
+Node: GNU Free Documentation License23141
 
 End Tag Table

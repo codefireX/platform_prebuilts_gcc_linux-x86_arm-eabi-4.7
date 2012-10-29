@@ -1,5 +1,5 @@
 This is doc/cppinternals.info, produced by makeinfo version 4.13 from
-../../../build/../gcc/gcc-linaro-4.7-2012.10/gcc/doc/cppinternals.texi.
+../../../build/../gcc/gcc-4.7/gcc/doc/cppinternals.texi.
 
 INFO-DIR-SECTION Software development
 START-INFO-DIR-ENTRY
@@ -1020,17 +1020,17 @@ Concept Index
 
 
 Tag Table:
-Node: Top993
-Node: Conventions2678
-Node: Lexer3620
-Ref: Invalid identifiers11533
-Ref: Lexing a line13482
-Node: Hash Nodes18255
-Node: Macro Expansion21134
-Node: Token Spacing30081
-Node: Line Numbering35941
-Node: Guard Macros40026
-Node: Files44817
-Node: Concept Index48283
+Node: Top978
+Node: Conventions2663
+Node: Lexer3605
+Ref: Invalid identifiers11518
+Ref: Lexing a line13467
+Node: Hash Nodes18240
+Node: Macro Expansion21119
+Node: Token Spacing30066
+Node: Line Numbering35926
+Node: Guard Macros40011
+Node: Files44802
+Node: Concept Index48268
 
 End Tag Table

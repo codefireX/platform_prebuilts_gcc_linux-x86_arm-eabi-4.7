@@ -1,12 +1,13 @@
 This is ld.info, produced by makeinfo version 4.13 from
-../../../build/../binutils/binutils-2.22/ld/ld.texinfo.
+../../../build/../binutils/binutils-2.22.52.0.4/ld/ld.texinfo.
 
 INFO-DIR-SECTION Software development
 START-INFO-DIR-ENTRY
 * Ld: (ld).                       The GNU linker.
 END-INFO-DIR-ENTRY
 
-   This file documents the GNU linker LD (GNU Binutils) version 2.22.
+   This file documents the GNU linker LD (Linux/GNU Binutils) version
+2.22.52.0.4.
 
    Copyright (C) 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free
@@ -25,7 +26,8 @@ File: ld.info,  Node: Top,  Next: Overview,  Up: (dir)
 LD
 **
 
-This file documents the GNU linker ld (GNU Binutils) version 2.22.
+This file documents the GNU linker ld (Linux/GNU Binutils) version
+2.22.52.0.4.
 
    This document is distributed under the terms of the GNU Free
 Documentation License version 1.3.  A copy of the license is included
@@ -5516,15 +5518,51 @@ File: ld.info,  Node: PowerPC64 ELF64,  Next: SPU ELF,  Prev: PowerPC ELF32,  Up
      disable the optimization.
 
 `--no-multi-toc'
-     By default, PowerPC64 GCC generates code for a TOC model where TOC
-     entries are accessed with a 16-bit offset from r2.  This limits the
-     total TOC size to 64K.  PowerPC64 `ld' extends this limit by
-     grouping code sections such that each group uses less than 64K for
-     its TOC entries, then inserts r2 adjusting stubs between
-     inter-group calls.  `ld' does not split apart input sections, so
-     cannot help if a single input file has a `.toc' section that
-     exceeds 64K, most likely from linking multiple files with `ld -r'.
-     Use this option to turn off this feature.
+     If given any toc option besides `-mcmodel=medium' or
+     `-mcmodel=large', PowerPC64 GCC generates code for a TOC model
+     where TOC entries are accessed with a 16-bit offset from r2.  This
+     limits the total TOC size to 64K.  PowerPC64 `ld' extends this
+     limit by grouping code sections such that each group uses less
+     than 64K for its TOC entries, then inserts r2 adjusting stubs
+     between inter-group calls.  `ld' does not split apart input
+     sections, so cannot help if a single input file has a `.toc'
+     section that exceeds 64K, most likely from linking multiple files
+     with `ld -r'.  Use this option to turn off this feature.
+
+`--no-toc-sort'
+     By default, `ld' sorts TOC sections so that those whose file
+     happens to have a section called `.init' or `.fini' are placed
+     first, followed by TOC sections referenced by code generated with
+     PowerPC64 gcc's `-mcmodel=small', and lastly TOC sections
+     referenced only by code generated with PowerPC64 gcc's
+     `-mcmodel=medium' or `-mcmodel=large' options.  Doing this results
+     in better TOC grouping for multi-TOC.  Use this option to turn off
+     this feature.
+
+`--plt-align'
+`--no-plt-align'
+     Use these options to control whether individual PLT call stubs are
+     aligned to a 32-byte boundary, or to the specified power of two
+     boundary when using `--plt-align='.  By default PLT call stubs are
+     packed tightly.
+
+`--plt-static-chain'
+`--no-plt-static-chain'
+     Use these options to control whether PLT call stubs load the static
+     chain pointer (r11).  `ld' defaults to not loading the static
+     chain since there is never any need to do so on a PLT call.
+
+`--plt-thread-safe'
+`--no-thread-safe'
+     With power7's weakly ordered memory model, it is possible when
+     using lazy binding for ld.so to update a plt entry in one thread
+     and have another thread see the individual plt entry words update
+     in the wrong order, despite ld.so carefully writing in the correct
+     order and using memory write barriers.  To avoid this we need some
+     sort of read barrier in the call stub, or use LD_BIND_NOW=1.  By
+     default, `ld' looks for calls to commonly used functions that
+     create threads, and if seen, adds the necessary barriers.  Use
+     these options to change the default behaviour.
 
 
 File: ld.info,  Node: SPU ELF,  Next: TI COFF,  Prev: PowerPC64 ELF64,  Up: Machine Dependent
@@ -6338,7 +6376,7 @@ contact that organization first.
 individuals in the file `etc/SERVICE' in the GNU Emacs distribution.
 
    Otherwise, send bug reports for `ld' to
-`http://www.sourceware.org/bugzilla/'.
+`http://www.sourceware.org/bugzilla/ and mailto:hjl.tools@gmail.com'.
 
    The fundamental principle of reporting bugs usefully is this:
 *report all the facts*.  If you are not sure whether to state a fact or
@@ -7219,11 +7257,15 @@ LD Index
 * --no-omagic:                           Options.            (line  454)
 * --no-opd-optimize:                     PowerPC64 ELF64.    (line   48)
 * --no-overlays:                         SPU ELF.            (line    9)
+* --no-plt-align:                        PowerPC64 ELF64.    (line   96)
+* --no-plt-static-chain:                 PowerPC64 ELF64.    (line  103)
+* --no-plt-thread-safe:                  PowerPC64 ELF64.    (line  109)
 * --no-print-gc-sections:                Options.            (line  947)
 * --no-seh:                              Options.            (line 1966)
 * --no-tls-optimize <1>:                 PowerPC64 ELF64.    (line   43)
 * --no-tls-optimize:                     PowerPC ELF32.      (line   51)
 * --no-toc-optimize:                     PowerPC64 ELF64.    (line   60)
+* --no-toc-sort:                         PowerPC64 ELF64.    (line   86)
 * --no-trampoline:                       Options.            (line 2009)
 * --no-undefined:                        Options.            (line  981)
 * --no-undefined-version:                Options.            (line 1023)
@@ -7241,6 +7283,9 @@ LD Index
 * --output=OUTPUT:                       Options.            (line  460)
 * --pic-executable:                      Options.            (line 1078)
 * --pic-veneer:                          ARM.                (line  133)
+* --plt-align:                           PowerPC64 ELF64.    (line   96)
+* --plt-static-chain:                    PowerPC64 ELF64.    (line  103)
+* --plt-thread-safe:                     PowerPC64 ELF64.    (line  109)
 * --plugin:                              SPU ELF.            (line    6)
 * --print-gc-sections:                   Options.            (line  947)
 * --print-map:                           Options.            (line  402)
@@ -7707,10 +7752,14 @@ LD Index
 * PowerPC64 multi-TOC:                   PowerPC64 ELF64.    (line   74)
 * PowerPC64 OPD optimization:            PowerPC64 ELF64.    (line   48)
 * PowerPC64 OPD spacing:                 PowerPC64 ELF64.    (line   54)
+* PowerPC64 PLT call stub static chain:  PowerPC64 ELF64.    (line  103)
+* PowerPC64 PLT call stub thread safety: PowerPC64 ELF64.    (line  109)
+* PowerPC64 PLT stub alignment:          PowerPC64 ELF64.    (line   96)
 * PowerPC64 stub grouping:               PowerPC64 ELF64.    (line    6)
 * PowerPC64 stub symbols:                PowerPC64 ELF64.    (line   29)
 * PowerPC64 TLS optimization:            PowerPC64 ELF64.    (line   43)
 * PowerPC64 TOC optimization:            PowerPC64 ELF64.    (line   60)
+* PowerPC64 TOC sorting:                 PowerPC64 ELF64.    (line   86)
 * precedence in expressions:             Operators.          (line    6)
 * prevent unnecessary loading:           Output Section Type.
                                                              (line   22)
@@ -7877,87 +7926,87 @@ LD Index
 
 
 Tag Table:
-Node: Top858
-Node: Overview1641
-Node: Invocation2755
-Node: Options3163
-Node: Environment94834
-Node: Scripts96594
-Node: Basic Script Concepts98328
-Node: Script Format101035
-Node: Simple Example101898
-Node: Simple Commands104994
-Node: Entry Point105500
-Node: File Commands106433
-Node: Format Commands110434
-Node: REGION_ALIAS112390
-Node: Miscellaneous Commands117222
-Node: Assignments120830
-Node: Simple Assignments121321
-Node: PROVIDE123057
-Node: PROVIDE_HIDDEN124262
-Node: Source Code Reference124506
-Node: SECTIONS128086
-Node: Output Section Description129977
-Node: Output Section Name131064
-Node: Output Section Address131940
-Node: Input Section134175
-Node: Input Section Basics134976
-Node: Input Section Wildcards138882
-Node: Input Section Common143882
-Node: Input Section Keep145364
-Node: Input Section Example145854
-Node: Output Section Data146822
-Node: Output Section Keywords149599
-Node: Output Section Discarding153168
-Node: Output Section Attributes154349
-Node: Output Section Type155450
-Node: Output Section LMA156521
-Node: Forced Output Alignment159592
-Node: Forced Input Alignment159860
-Node: Output Section Constraint160249
-Node: Output Section Region160677
-Node: Output Section Phdr161110
-Node: Output Section Fill161774
-Node: Overlay Description162916
-Node: MEMORY167218
-Node: PHDRS171552
-Node: VERSION176806
-Node: Expressions184899
-Node: Constants185828
-Node: Symbolic Constants186703
-Node: Symbols187254
-Node: Orphan Sections188001
-Node: Location Counter189165
-Node: Operators193601
-Node: Evaluation194523
-Node: Expression Section195887
-Node: Builtin Functions199544
-Node: Implicit Linker Scripts207500
-Node: Machine Dependent208275
-Node: H8/300209291
-Node: i960210916
-Node: M68HC11/68HC12213120
-Node: ARM214574
-Node: HPPA ELF32222537
-Node: M68K224160
-Node: MMIX225069
-Node: MSP430226234
-Node: PowerPC ELF32227283
-Node: PowerPC64 ELF64230119
-Node: SPU ELF234535
-Node: TI COFF237167
-Node: WIN32237693
-Node: Xtensa257818
-Node: BFD260783
-Node: BFD outline262238
-Node: BFD information loss263524
-Node: Canonical format266041
-Node: Reporting Bugs270398
-Node: Bug Criteria271092
-Node: Bug Reporting271791
-Node: MRI278830
-Node: GNU Free Documentation License283473
-Node: LD Index308629
+Node: Top878
+Node: Overview1674
+Node: Invocation2788
+Node: Options3196
+Node: Environment94867
+Node: Scripts96627
+Node: Basic Script Concepts98361
+Node: Script Format101068
+Node: Simple Example101931
+Node: Simple Commands105027
+Node: Entry Point105533
+Node: File Commands106466
+Node: Format Commands110467
+Node: REGION_ALIAS112423
+Node: Miscellaneous Commands117255
+Node: Assignments120863
+Node: Simple Assignments121354
+Node: PROVIDE123090
+Node: PROVIDE_HIDDEN124295
+Node: Source Code Reference124539
+Node: SECTIONS128119
+Node: Output Section Description130010
+Node: Output Section Name131097
+Node: Output Section Address131973
+Node: Input Section134208
+Node: Input Section Basics135009
+Node: Input Section Wildcards138915
+Node: Input Section Common143915
+Node: Input Section Keep145397
+Node: Input Section Example145887
+Node: Output Section Data146855
+Node: Output Section Keywords149632
+Node: Output Section Discarding153201
+Node: Output Section Attributes154382
+Node: Output Section Type155483
+Node: Output Section LMA156554
+Node: Forced Output Alignment159625
+Node: Forced Input Alignment159893
+Node: Output Section Constraint160282
+Node: Output Section Region160710
+Node: Output Section Phdr161143
+Node: Output Section Fill161807
+Node: Overlay Description162949
+Node: MEMORY167251
+Node: PHDRS171585
+Node: VERSION176839
+Node: Expressions184932
+Node: Constants185861
+Node: Symbolic Constants186736
+Node: Symbols187287
+Node: Orphan Sections188034
+Node: Location Counter189198
+Node: Operators193634
+Node: Evaluation194556
+Node: Expression Section195920
+Node: Builtin Functions199577
+Node: Implicit Linker Scripts207533
+Node: Machine Dependent208308
+Node: H8/300209324
+Node: i960210949
+Node: M68HC11/68HC12213153
+Node: ARM214607
+Node: HPPA ELF32222570
+Node: M68K224193
+Node: MMIX225102
+Node: MSP430226267
+Node: PowerPC ELF32227316
+Node: PowerPC64 ELF64230152
+Node: SPU ELF236308
+Node: TI COFF238940
+Node: WIN32239466
+Node: Xtensa259591
+Node: BFD262556
+Node: BFD outline264011
+Node: BFD information loss265297
+Node: Canonical format267814
+Node: Reporting Bugs272171
+Node: Bug Criteria272865
+Node: Bug Reporting273564
+Node: MRI280634
+Node: GNU Free Documentation License285277
+Node: LD Index310433
 
 End Tag Table
