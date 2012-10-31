@@ -1,5 +1,5 @@
 This is annotate.info, produced by makeinfo version 4.13 from
-../../../../build/../gdb/gdb-linaro-7.5-2012.09/gdb/doc/annotate.texinfo.
+../../.././../gdb/gdb-linaro-7.5-2012.09/gdb/doc/annotate.texinfo.
 
 INFO-DIR-SECTION Software development
 START-INFO-DIR-ENTRY
@@ -1172,21 +1172,21 @@ permit their use in free software.
 
 
 Tag Table:
-Node: Top1293
-Node: Annotations Overview2463
-Node: Limitations4262
-Node: Migrating to GDB/MI6847
-Node: Server Prefix7230
-Node: Value Annotations7876
-Node: Frame Annotations11046
-Node: Displays14945
-Node: Prompting15976
-Node: Errors17479
-Node: Breakpoint Info18369
-Node: Invalidation19594
-Node: Annotations for Running20073
-Node: Source Annotations21586
-Node: Multi-threaded Apps22532
-Node: GNU Free Documentation License23141
+Node: Top1286
+Node: Annotations Overview2456
+Node: Limitations4255
+Node: Migrating to GDB/MI6840
+Node: Server Prefix7223
+Node: Value Annotations7869
+Node: Frame Annotations11039
+Node: Displays14938
+Node: Prompting15969
+Node: Errors17472
+Node: Breakpoint Info18362
+Node: Invalidation19587
+Node: Annotations for Running20066
+Node: Source Annotations21579
+Node: Multi-threaded Apps22525
+Node: GNU Free Documentation License23134
 
 End Tag Table

@@ -229,7 +229,7 @@ typedef enum {with_flags, without_flags} flag_type;
 /* A section flag list.  */
 struct flag_info_list
 {
-  flag_type with;
+  flag_type with; 
   const char *name;
   bfd_boolean valid;
   struct flag_info_list *next;
@@ -245,7 +245,6 @@ struct flag_info
 };
 
 struct bfd_elf_dynamic_list;
-struct bfd_elf_version_tree;
 
 /* This structure holds all the information needed to communicate
    between BFD and the linker when doing a link.  */
@@ -337,9 +336,6 @@ struct bfd_link_info
   /* TRUE if we should warn when adding a DT_TEXTREL to a shared object.  */
   unsigned int warn_shared_textrel: 1;
 
-  /* TRUE if we should error when adding a DT_TEXTREL.  */
-  unsigned int error_textrel: 1;
-
   /* TRUE if .hash section should be created.  */
   unsigned int emit_hash: 1;
 
@@ -380,12 +376,6 @@ struct bfd_link_info
   /* TRUE if ok to have multiple definition.  */
   unsigned int allow_multiple_definition: 1;
 
-  /* TRUE if .gnu_object_only section should be created.  */
-  unsigned int emit_gnu_object_only: 1;
-
-  /* TRUE if .gnu_object_only section is being created.  */
-  unsigned int emitting_gnu_object_only: 1;
-
   /* TRUE if ok to have version with no definition.  */
   unsigned int allow_undefined_version: 1;
 
@@ -413,9 +403,6 @@ struct bfd_link_info
 
   /* TRUE if we should warn alternate ELF machine code.  */
   unsigned int warn_alternate_em: 1;
-
-  /* TRUE if the linker script contained an explicit PHDRS command.  */
-  unsigned int user_phdrs: 1;
 
   /* Char that may appear as the first char of a symbol, but should be
      skipped (like symbol_leading_char) when looking up symbols in
@@ -451,6 +438,12 @@ struct bfd_link_info
      together via the link_next field.  */
   bfd *input_bfds;
   bfd **input_bfds_tail;
+
+  /* TRUE if .gnu_object_only section should be created.  */
+  unsigned int emit_gnu_object_only: 1;
+
+  /* TRUE if .gnu_object_only section is being created.  */
+  unsigned int emitting_gnu_object_only: 1;
 
   /* Non-NULL if .note.gnu.build-id section should be created.  */
   char *emit_note_gnu_build_id;
@@ -512,9 +505,6 @@ struct bfd_link_info
 
   /* List of symbols should be dynamic.  */
   struct bfd_elf_dynamic_list *dynamic_list;
-
-  /* The version information.  */
-  struct bfd_elf_version_tree *version_info;
 };
 
 /* This structures holds a set of callback functions.  These are called
@@ -686,8 +676,8 @@ struct bfd_link_order
 	} indirect;
       struct
 	{
-	  /* Size of contents, or zero when contents should be filled by
-	     the architecture-dependent fill function.
+	  /* Size of contents, or zero when contents size == size
+	     within output section.
 	     A non-zero value allows filling of the output section
 	     with an arbitrary repeated pattern.  */
 	  unsigned int size;

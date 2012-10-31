@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/tmp/android-toolchain-eabi/x86_64-unknown-linux-gnu/arm-eabi/lib'
+libdir='/tmp/android-toolchain-eabi/x86_64-unknown-linux-gnu/arm-linux-androideabi/lib'
